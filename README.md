@@ -20,6 +20,7 @@ Building :
 $ ant 
 
 Usage :
+```
 $ java -cp dist/kv-perf-tool.jar kvperf.PerformanceTest --help
 Option                                  Description                            
 ------                                  -----------                            
@@ -66,15 +67,16 @@ Option                                  Description
   value_size_bytes>                       (default: 100)                       
 --warm-up                               warmp up the store before experiments  
                                           begin 
-
+```
 Sample run (BDB) :
+```
 $ java -server -Xms1g -Xmx1g -XX:NewSize=128m -XX:MaxNewSize=128m -XX:+AlwaysPreTouch -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:CMSInitiatingOccupancyFraction=70 -XX:SurvivorRatio=2 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:results/gc.log -XX:+PrintGCTimeStamps -cp dist/kv-perf-tool.jar -Dlog4j.configuration=file://`pwd`/log4j.properties kvperf.PerformanceTest --store-type bdb --threads 5 --key-size 10  --min-value-size 100  --max-value-size 200  --warm-up --prepopulate  --directory bdbdata --reporting-interval 10   --percent-gets 100  --percent-puts 0  --percent-deletes 0  --runtime 60 --throughput 100 --num-keys 1000000 --store-properties sample_config/store.properties --results-directory results
-
+```
 MemoryHogger :
 
 Also included is a Memory hogger tool to lock down memory so we can hit the disk as hard as we want.
-
+```
 $ sudo swapoff -a
 $ java -Xmx12g -Xms12g -XX:+AlwaysPreTouch -cp dist/kv-perf-tool.jar MemoryHogger
-
+```
 
