@@ -209,7 +209,7 @@ public class PerformanceTest {
 				.ofType(String.class)
 				.defaultsTo("result");
 		OptionSpec<String> storeTypeOpt = 
-				parser.accepts("store-type", "KVStore type {bdb, mysql, krati etc}")
+				parser.accepts("store-type", "KVStore type {bdb, mysql, krati, leveldb, rocksdb}")
 				.withRequiredArg()
 				.describedAs("type")
 				.ofType(String.class);
@@ -319,6 +319,8 @@ public class PerformanceTest {
 			store = new MysqlStore(directory.getName(), resultsDirectory);
 		} else if("leveldb".equals(storeType)) {
 			store = new LevelDBStore(directory, resultsDirectory);
+		} else if("rocksdb".equals(storeType)) {
+			store = new RocksDBStore(directory, resultsDirectory);
 		}  else {
 			throw new Exception("Unknown store type");
 		}
