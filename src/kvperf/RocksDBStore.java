@@ -38,7 +38,11 @@ public class RocksDBStore implements KVStore {
 		
 		
 		Options opts = new Options();
-		opts.cacheSizeBytes = 100 * 1024 * 1024;
+		if (props.containsKey("rocksdb.cache.size")){
+			opts.cacheSizeBytes = Long.parseLong(props.getProperty("rocksdb.cache.size"));
+		} else {
+			opts.cacheSizeBytes = 100 * 1024 * 1024;
+		}
 		rocksDB = new RocksDB(dataDir.getAbsolutePath(), opts);
 	}
 
