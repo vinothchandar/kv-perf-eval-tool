@@ -73,7 +73,7 @@ if __name__ == "__main__":
                                                valueSize,
                                                1,
                                                1,
-                                               '~/tools/je-4.1.17.jar')
+                                               'lib/je-5.0.103.jar')
                 model.compute()
                 if  model.getDataSizeInGB() > options.maxDiskSpace :
                     continue    
@@ -81,7 +81,7 @@ if __name__ == "__main__":
                 # generate data once, warm it up.. copy it and keep using
                 print 'Generating data for :', storeSize, keySize, valueSize
                 perfRunCmd = ["java " + options.jvmargs ,  
-                                " -cp .:bin:lib/je.jar:lib/jopt-simple-4.3.jar:lib/krati-0.4.7-SNAPSHOT.jar:lib/log4j-1.2.17.jar ",
+                                " -cp .:bin:lib/je-5.0.103.jar:lib/jopt-simple-4.3.jar:lib/krati-0.4.7-SNAPSHOT.jar:lib/log4j-1.2.17.jar ",
                                 "-Dlog4j.configuration=file://`pwd`/log4j.properties PerformanceTest ",
                                 "--store-type bdb ",
                                 "--threads 50 ",
@@ -131,7 +131,7 @@ if __name__ == "__main__":
                         os.system("mkdir -p bdbdata")
                         os.system("cp -rf  "+ options.dataCopyLocation+"/"+dataSetName+"/* bdbdata/");
                     perfRunCmd = ["java " + options.jvmargs ,  
-                                " -cp .:bin:lib/je.jar:lib/jopt-simple-4.3.jar:lib/krati-0.4.7-SNAPSHOT.jar:lib/log4j-1.2.17.jar ",
+                                " -cp .:bin:lib/je-5.0.103.jar:lib/jopt-simple-4.3.jar:lib/krati-0.4.7-SNAPSHOT.jar:lib/log4j-1.2.17.jar ",
                                 "-Dlog4j.configuration=file://`pwd`/log4j.properties PerformanceTest ",
                                 "--store-type bdb ",
                                 "--threads 50 ",
