@@ -80,9 +80,9 @@ class SpaceUtilizationStats {
 }
 
 
-public class BdbStore implements KVStore {
+public class BdbJeStore implements KVStore {
 
-	private static final Logger logger = Logger.getLogger(BdbStore.class);
+	private static final Logger logger = Logger.getLogger(BdbJeStore.class);
 	private static final double UTIL_PCT = 50.0;
 
 	private Database database;
@@ -99,7 +99,7 @@ public class BdbStore implements KVStore {
 	
 	AtomicInteger nullCount = new AtomicInteger(); 
 
-	public BdbStore(File envDir, File resultsDirectory) {		
+	public BdbJeStore(File envDir, File resultsDirectory) {		
 		this.resultsDirectory = resultsDirectory;
 		this.envDir = envDir;
 	}
@@ -457,7 +457,7 @@ public class BdbStore implements KVStore {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		BdbStore store = new BdbStore(new File(args[1]), new File(args[1]));
+		BdbJeStore store = new BdbJeStore(new File(args[1]), new File(args[1]));
 		int numRecords = Integer.parseInt(args[0]);
 		
 		Properties props = new Properties();

@@ -314,7 +314,7 @@ public class PerformanceTest {
 
 			store = new KratiStore(StoreFactory.createIndexedDataStore(config));
 		} else if("bdb".equals(storeType)) {
-			store = new BdbStore(directory,resultsDirectory);
+			store = new BdbJeStore(directory,resultsDirectory);
 		} else if("mysql".equals(storeType)) {
 			store = new MysqlStore(directory.getName(), resultsDirectory);
 		} else if("leveldb".equals(storeType)) {
