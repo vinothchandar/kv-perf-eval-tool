@@ -313,7 +313,7 @@ public class PerformanceTest {
 			config.setHashLoadFactor(1.0);
 
 			store = new KratiStore(StoreFactory.createIndexedDataStore(config));
-		} else if("bdb".equals(storeType)) {
+		} else if("bdbje".equals(storeType)) {
 			store = new BdbJeStore(directory,resultsDirectory);
 		} else if("mysql".equals(storeType)) {
 			store = new MysqlStore(directory.getName(), resultsDirectory);
@@ -321,7 +321,9 @@ public class PerformanceTest {
 			store = new LevelDBStore(directory, resultsDirectory);
 		} else if("rocksdb".equals(storeType)) {
 			store = new RocksDBStore(directory, resultsDirectory);
-		}  else {
+		} else if("bdbc".equals(storeType)) {
+			store = new BdbStore(directory, resultsDirectory);
+		}else {
 			throw new Exception("Unknown store type");
 		}
 		store.init(props);

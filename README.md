@@ -68,9 +68,24 @@ Option                                  Description
 --warm-up                               warmp up the store before experiments  
                                           begin 
 ```
-Sample run (BDB) :
+Sample run (BDB-C) :
+
+Note: for bdbc runs, include the following argument
+
 ```
-$ java -server -Xms1g -Xmx1g -XX:NewSize=128m -XX:MaxNewSize=128m -XX:+AlwaysPreTouch -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:CMSInitiatingOccupancyFraction=70 -XX:SurvivorRatio=2 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:results/gc.log -XX:+PrintGCTimeStamps -cp dist/kv-perf-tool.jar -Dlog4j.configuration=file://`pwd`/log4j.properties kvperf.PerformanceTest --store-type bdb --threads 5 --key-size 10  --min-value-size 100  --max-value-size 200  --warm-up --prepopulate  --directory bdbdata --reporting-interval 10   --percent-gets 100  --percent-puts 0  --percent-deletes 0  --runtime 60 --throughput 100 --num-keys 1000000 --store-properties sample_config/store.properties --results-directory results
+ -Djava.library.path=/usr/local/<BerkeleyDB-INSTALL-PATH>/lib
+
+```
+
+```
+ava -server -Xms512m -Xmx512m -XX:NewSize=128m -XX:MaxNewSize=128m -XX:+AlwaysPreTouch -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:CMSInitiatingOccupancyFraction=70 -XX:SurvivorRatio=2 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:results/gc.log -XX:+PrintGCTimeStamps -cp dist/kv-perf-tool.jar -Dlog4j.configuration=file://`pwd`/log4j.properties -Djava.library.path=/usr/local/BerkeleyDB.6.0/lib kvperf.PerformanceTest --store-type bdbc --threads 5 --key-size 10  --min-value-size 100  --max-value-size 200  --prepopulate -warm-up --directory bdbdata --reporting-interval 10   --percent-gets 100  --percent-puts 0  --percent-deletes 0  --runtime 60 --throughput 100 --num-keys 10000 --store-properties sample_config/bdbc.properties --results-directory results
+```
+
+
+Sample run (BDB-JE) :
+
+```
+$ java -server -Xms1g -Xmx1g -XX:NewSize=128m -XX:MaxNewSize=128m -XX:+AlwaysPreTouch -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:CMSInitiatingOccupancyFraction=70 -XX:SurvivorRatio=2 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintGCApplicationConcurrentTime -Xloggc:results/gc.log -XX:+PrintGCTimeStamps -cp dist/kv-perf-tool.jar -Dlog4j.configuration=file://`pwd`/log4j.properties kvperf.PerformanceTest --store-type bdbje --threads 5 --key-size 10  --min-value-size 100  --max-value-size 200  --warm-up --prepopulate  --directory bdbdata --reporting-interval 10   --percent-gets 100  --percent-puts 0  --percent-deletes 0  --runtime 60 --throughput 100 --num-keys 1000000 --store-properties sample_config/store.properties --results-directory results
 ```
 MemoryHogger :
 
