@@ -1,9 +1,7 @@
 kv-perf
 =======
 
-Performance testing framework for key-value datastores
-
-Runs key-value workloads against different databases and measures performance.
+Performance testing framework for key-value datastores. Runs key-value workloads against different databases and measures performance.
 
 Currently supports the following
 
